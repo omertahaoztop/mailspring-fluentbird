@@ -1,0 +1,16 @@
+// Mailspring bunu her mesajın iframe'ine enjekte eder (styles/index.less yoksa).
+@import 'ui-variables';
+
+.ignore-in-parent-frame {
+  // Şema uyuşmazlığı olursa Chromium metnin arkasına opak siyah boyuyor.
+  html {
+    color-scheme: light !important;
+  }
+
+  html,
+  body,
+  #inbox-html-wrapper,
+  #inbox-html-wrapper.has-background {
+    background: transparent !important;
+  }
+}

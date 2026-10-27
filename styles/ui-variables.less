@@ -1,0 +1,398 @@
+@import 'base/ui-variables';
+
+// Fluent (Mica dark) palette
+@accent-primary: var(--system-accent, #4cc2ff);
+@accent-primary-dark: var(--system-accent-dark, color-mix(in srgb, @accent-primary, black 14%));
+
+@background-primary: #202020;
+@background-off-primary: #262626;
+@background-secondary: #282828;
+@background-tertiary: #9b9b9b;
+
+@border-color-primary: rgba(255, 255, 255, 0.09);
+@border-color-secondary: rgba(255, 255, 255, 0.06);
+@border-color-tertiary: rgba(255, 255, 255, 0.05);
+@border-color-divider: @border-color-secondary;
+
+@text-color: #f4f4f4;
+@text-color-subtle: #b9b9b9;
+@text-color-very-subtle: #8c8c8c;
+@text-color-heading: #ffffff;
+@text-color-inverse: #101418;
+@text-color-link: @accent-primary;
+@text-color-link-hover: @accent-primary-dark;
+@text-color-link-active: @accent-primary-dark;
+
+@component-active-color: @accent-primary;
+@component-active-bg: rgba(255, 255, 255, 0.05);
+
+@panel-background-color: rgba(255, 255, 255, 0.025);
+@source-list-bg: @panel-background-color;
+@source-list-active-bg: rgba(255, 255, 255, 0.07);
+@source-list-active-color: @text-color-heading;
+
+@list-bg: #202020;
+@list-border: rgba(255, 255, 255, 0.045);
+@list-hover-bg: rgba(255, 255, 255, 0.05);
+@list-focused-bg: rgba(76, 194, 255, 0.16);
+@list-focused-color: @text-color;
+@list-selected-bg: rgba(255, 255, 255, 0.08);
+@list-selected-color: @text-color;
+@list-selected-border: @list-border;
+
+@toolbar-background-color: rgba(28, 28, 28, 0.84);
+
+@btn-default-bg-color: rgba(255, 255, 255, 0.06);
+@btn-default-text-color: @text-color;
+@btn-border-color: rgba(255, 255, 255, 0.08);
+@btn-emphasis-bg-color: #4cc2ff;
+@btn-emphasis-text-color: #0b1014;
+@btn-icon-color: @text-color-subtle;
+
+@dropdown-default-bg-color: #2b2b2b;
+@dropdown-default-border-color: rgba(255, 255, 255, 0.1);
+
+@input-bg: rgba(255, 255, 255, 0.05);
+@input-bg-disabled: rgba(255, 255, 255, 0.02);
+@input-border-color: rgba(255, 255, 255, 0.1);
+@input-border-color-blurred: rgba(255, 255, 255, 0.06);
+
+@background-color-info: #0f6cbd;
+@background-color-success: #6ccb5f;
+@background-color-warning: #fce100;
+@background-color-error: #ff99a4;
+
+@border-radius-base: 6px;
+@border-radius-large: 10px;
+@border-radius-small: 4px;
+@component-border-radius: 6px;
+
+@font-family-sans-serif: 'Segoe UI Variable Text', 'Segoe UI', Cantarell, 'Noto Sans', system-ui,
+  sans-serif;
+@font-family: @font-family-sans-serif;
+@font-family-heading: @font-family-sans-serif;
+
+@standard-shadow-color: rgba(0, 0, 0, 0.4);
+@standard-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+@shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.06);
+
+// Mica: two soft accent blooms under the translucent surfaces
+html,
+body {
+  color: @text-color;
+  background-color: @background-primary;
+}
+
+mailspring-workspace {
+  background-image: radial-gradient(1200px 760px at 6% -18%, rgba(76, 194, 255, 0.2), transparent 62%),
+    radial-gradient(1000px 700px at 104% 116%, rgba(122, 92, 255, 0.16), transparent 64%),
+    linear-gradient(rgba(255, 255, 255, 0.02), transparent 30%);
+}
+
+// Window chrome
+.sheet-toolbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: transparent;
+}
+
+.sheet-toolbar-container {
+  background: @toolbar-background-color !important;
+  background-image: none !important;
+  -webkit-backdrop-filter: blur(30px) saturate(150%);
+  backdrop-filter: blur(30px) saturate(150%);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.btn-toolbar {
+  border-radius: @border-radius-small + 2;
+  box-shadow: none;
+  transition: background-color 120ms ease;
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+
+// Pencere düğmeleri pasif görünmesin
+.toolbar-window-controls button {
+  opacity: 1;
+}
+
+// Nav pane
+.account-sidebar {
+  background-color: @panel-background-color;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.outline-view .item {
+  height: 30px;
+  margin: 1px 6px;
+  padding-right: 8px;
+  border-radius: @border-radius-small + 2;
+  transition: background-color 120ms ease;
+}
+
+// Thread rows
+.thread-list .list-item,
+.draft-list .list-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  transition: background-color 120ms ease;
+  &.selected,
+  &.focused {
+    border-bottom-color: transparent;
+  }
+}
+
+// Konu saatiyle çakışmasın
+.thread-list .list-item .participants {
+  padding-right: 10px;
+}
+
+.thread-list .list-item .timestamp {
+  opacity: 0.72;
+}
+
+// Etiketler koyu zeminde parlamasın, renk yazıya taşınsın
+.thread-list .list-item .mail-label {
+  background: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: none !important;
+  filter: brightness(240%) saturate(130%);
+}
+
+// Siyah PNG ikonlar koyu zeminde kayboluyor
+.thread-list .list-item .thread-icon,
+.thread-list .list-item .draft-icon,
+.thread-list .list-item .mail-important-icon {
+  filter: brightness(600%) grayscale(100%);
+  opacity: 0.7;
+}
+
+// Mica zemini panellerin altında kalsın
+.sheet {
+  background: transparent !important;
+}
+
+// Reading pane: floating cards on the Mica canvas
+#message-list {
+  background: transparent !important;
+  padding: 12px 16px;
+}
+
+#message-list .message-item-wrap {
+  margin-bottom: 14px;
+}
+
+#message-list .message-item-wrap .message-item-white-wrap {
+  background: #2b2b2b;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+#message-list .message-item-wrap.collapsed .message-item-white-wrap {
+  background: #262626;
+}
+
+.message-subject-wrap .message-subject.message-subject,
+.message-subject.message-subject {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: @text-color-heading;
+}
+
+.message-participants,
+.message-participants .participant-name,
+.message-participants .from-contact {
+  font-size: 13px;
+}
+
+.message-participants .participant-name,
+.message-participants .from-contact {
+  font-weight: 600;
+  color: @text-color;
+}
+
+.message-participants .participant-label,
+.message-time {
+  color: @text-color-very-subtle;
+}
+
+#message-list .message-body,
+#message-list .message-body .plaintext {
+  font-size: 14.5px;
+  line-height: 1.62;
+}
+
+.message-subject-wrap,
+.message-list-headers {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+// Çeviri şeridi: keskin mavi kutu yerine yumuşak şerit
+.translate-message-header {
+  margin: 12px 0 !important;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(76, 194, 255, 0.08);
+
+  .message {
+    border: none !important;
+    background: transparent;
+    padding: 8px 12px;
+    color: @text-color;
+    .note {
+      font-size: 11.5px;
+      opacity: 0.62;
+    }
+  }
+
+  .actions .action {
+    margin: 6px;
+    min-height: 26px;
+    min-width: 74px;
+    padding: 0 10px !important;
+    border: none !important;
+    border-radius: 8px;
+    background: rgba(76, 194, 255, 0.16);
+    color: @text-color;
+
+    &:active {
+      background: rgba(76, 194, 255, 0.26);
+    }
+  }
+}
+
+// Sağ panel: kart canvas üstünde yüzsün
+.column-MessageListSidebar {
+  background: transparent !important;
+}
+
+.sidebar-section.visible {
+  background: rgba(255, 255, 255, 0.045) !important;
+  border: none;
+  border-radius: 14px;
+}
+
+.sidebar-contact-card p {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: @text-color-very-subtle;
+}
+
+.sidebar-contact-card .btn {
+  border-radius: 999px;
+}
+
+.contact-profile-photo {
+  border-radius: 14px !important;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.participant-profile .personal-info {
+  padding-top: 14px;
+
+  .full-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: @text-color;
+  }
+
+  .email {
+    font-size: 12.5px;
+    color: @text-color-very-subtle;
+  }
+}
+
+.participant-profile .additional-info .bio {
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+// Controls
+.btn {
+  border-radius: @border-radius-small + 2;
+  box-shadow: none;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+textarea {
+  border-radius: @border-radius-small + 2;
+}
+
+// Composer
+.composer-inner-wrap .RichEditor-root {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: @border-radius-large;
+}
+
+.composer-action-bar-wrap {
+  background: transparent;
+}
+
+// Menus and popovers
+.menu,
+.dropdown-menu,
+.fixed-popover {
+  border-radius: @border-radius-large;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.outline-view .item.selected.selected {
+  background: rgba(76, 194, 255, 0.14);
+  color: #eaf6ff;
+}
+
+// Sayaçlar sessiz kalsın, dolgu yalnız seçili satırda
+.outline-view .item-count-box {
+  min-width: 0;
+  height: 15px;
+  padding: 0 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 15px;
+  color: #9a9a9a !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.outline-view .item-count-box:empty {
+  display: none !important;
+}
+
+.outline-view .item.selected .item-count-box {
+  color: #d6ecff !important;
+  background: transparent !important;
+}
+
+// Mailspring draws its own overlay scrollbar as a light pill
+.scrollbar-handle {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+  border-color: transparent !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::selection {
+  background: rgba(76, 194, 255, 0.35);
+}

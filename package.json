@@ -1,0 +1,20 @@
+{
+  "name": "fluentbird-dark",
+  "displayName": "FluentBird Dark",
+  "theme": "ui",
+  "version": "1.0.0",
+  "description": "Windows 11 Fluent / Mica-inspired dark theme for Mailspring, after Deathbyteacup/fluentbird",
+  "license": "MIT",
+  "author": "Ömer Taha Öztop",
+  "keywords": [
+    "mailspring",
+    "theme",
+    "dark",
+    "fluent",
+    "mica",
+    "windows-11"
+  ],
+  "engines": {
+    "mailspring": "*"
+  }
+}
