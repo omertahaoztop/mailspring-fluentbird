@@ -93,4 +93,4 @@ Design direction borrowed from, none of the CSS copied:
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+GPL-3.0-only — see [LICENSE](LICENSE). Copyright (C) 2026 Ömer Taha Öztop.

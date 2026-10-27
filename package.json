@@ -4,7 +4,7 @@
   "theme": "ui",
   "version": "1.0.0",
   "description": "Windows 11 Fluent / Mica-inspired dark theme for Mailspring, after Deathbyteacup/fluentbird",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "author": "Ömer Taha Öztop",
   "keywords": [
     "mailspring",
