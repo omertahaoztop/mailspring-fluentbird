@@ -3,25 +3,49 @@
 // Fluent (Mica dark) palette
 @accent-primary: var(--system-accent, #4cc2ff);
 @accent-primary-dark: var(--system-accent-dark, color-mix(in srgb, @accent-primary, black 14%));
+@accent-wash: color-mix(in srgb, @accent-primary 14%, transparent);
+@accent-wash-strong: color-mix(in srgb, @accent-primary 24%, transparent);
+@accent-ink: color-mix(in srgb, @accent-primary, white 72%);
 
-@background-primary: #202020;
-@background-off-primary: #262626;
+@surface-canvas: #1c1c1c;
+@surface-pane: #202020;
+@surface-card: #2b2b2b;
+@surface-card-muted: #262626;
+@surface-raised: #2f2f2f;
+@hairline: rgba(255, 255, 255, 0.06);
+@hover-fill: rgba(255, 255, 255, 0.045);
+
+@radius-xs: 4px;
+@radius-sm: 6px;
+@radius-md: 8px;
+@radius-lg: 12px;
+@radius-pill: 999px;
+
+@ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+@dur-fast: 120ms;
+
+@card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 2px 4px rgba(0, 0, 0, 0.18),
+  0 8px 24px rgba(0, 0, 0, 0.2);
+@popover-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px rgba(0, 0, 0, 0.5);
+
+@background-primary: @surface-pane;
+@background-off-primary: @surface-card-muted;
 @background-secondary: #282828;
-@background-tertiary: #9b9b9b;
+@background-tertiary: #5f5f5f;
 
 @border-color-primary: rgba(255, 255, 255, 0.09);
-@border-color-secondary: rgba(255, 255, 255, 0.06);
+@border-color-secondary: @hairline;
 @border-color-tertiary: rgba(255, 255, 255, 0.05);
 @border-color-divider: @border-color-secondary;
 
 @text-color: #f4f4f4;
 @text-color-subtle: #b9b9b9;
-@text-color-very-subtle: #8c8c8c;
+@text-color-very-subtle: #8f8f8f;
 @text-color-heading: #ffffff;
-@text-color-inverse: #101418;
+@text-color-inverse: #ffffff;
 @text-color-link: @accent-primary;
-@text-color-link-hover: @accent-primary-dark;
-@text-color-link-active: @accent-primary-dark;
+@text-color-link-hover: @accent-ink;
+@text-color-link-active: @accent-ink;
 
 @component-active-color: @accent-primary;
 @component-active-bg: rgba(255, 255, 255, 0.05);
@@ -31,61 +55,66 @@
 @source-list-active-bg: rgba(255, 255, 255, 0.07);
 @source-list-active-color: @text-color-heading;
 
-@list-bg: #202020;
+@list-bg: @surface-pane;
 @list-border: rgba(255, 255, 255, 0.045);
-@list-hover-bg: rgba(255, 255, 255, 0.05);
-@list-focused-bg: rgba(76, 194, 255, 0.16);
+@list-hover-bg: @hover-fill;
+@list-focused-bg: @accent-wash-strong;
 @list-focused-color: @text-color;
-@list-selected-bg: rgba(255, 255, 255, 0.08);
+@list-focused-border: transparent;
+@list-selected-bg: @accent-wash;
 @list-selected-color: @text-color;
-@list-selected-border: @list-border;
+@list-selected-border: transparent;
 
 @toolbar-background-color: rgba(28, 28, 28, 0.84);
 
 @btn-default-bg-color: rgba(255, 255, 255, 0.06);
 @btn-default-text-color: @text-color;
 @btn-border-color: rgba(255, 255, 255, 0.08);
+// Base buttons.less bunu darken() ile işliyor, var() olamaz
 @btn-emphasis-bg-color: #4cc2ff;
 @btn-emphasis-text-color: #0b1014;
 @btn-icon-color: @text-color-subtle;
 
-@dropdown-default-bg-color: #2b2b2b;
+@dropdown-default-bg-color: @surface-raised;
 @dropdown-default-border-color: rgba(255, 255, 255, 0.1);
 
 @input-bg: rgba(255, 255, 255, 0.05);
 @input-bg-disabled: rgba(255, 255, 255, 0.02);
 @input-border-color: rgba(255, 255, 255, 0.1);
-@input-border-color-blurred: rgba(255, 255, 255, 0.06);
+@input-border-color-blurred: @hairline;
 
 @background-color-info: #0f6cbd;
 @background-color-success: #6ccb5f;
 @background-color-warning: #fce100;
 @background-color-error: #ff99a4;
 
-@border-radius-base: 6px;
-@border-radius-large: 10px;
-@border-radius-small: 4px;
-@component-border-radius: 6px;
+@border-radius-base: @radius-sm;
+@border-radius-large: @radius-lg;
+@border-radius-small: @radius-xs;
+@component-border-radius: @radius-sm;
 
-@font-family-sans-serif: 'Segoe UI Variable Text', 'Segoe UI', Cantarell, 'Noto Sans', system-ui,
-  sans-serif;
+@font-family-sans-serif: 'Segoe UI Variable Text', 'Segoe UI', 'Adwaita Sans', Cantarell, 'Noto Sans',
+  system-ui, sans-serif;
 @font-family: @font-family-sans-serif;
 @font-family-heading: @font-family-sans-serif;
 
 @standard-shadow-color: rgba(0, 0, 0, 0.4);
 @standard-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-@shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.06);
+@shadow-border: 0 0 0 1px @hairline;
 
-// Mica: two soft accent blooms under the translucent surfaces
+// Mica: one soft accent bloom under the translucent surfaces
 html,
 body {
   color: @text-color;
-  background-color: @background-primary;
+  background-color: @surface-canvas;
 }
 
 mailspring-workspace {
-  background-image: radial-gradient(1200px 760px at 6% -18%, rgba(76, 194, 255, 0.2), transparent 62%),
-    radial-gradient(1000px 700px at 104% 116%, rgba(122, 92, 255, 0.16), transparent 64%),
+  background-image: radial-gradient(
+      1300px 820px at 4% -20%,
+      color-mix(in srgb, @accent-primary 16%, transparent),
+      transparent 62%
+    ),
     linear-gradient(rgba(255, 255, 255, 0.02), transparent 30%);
 }
 
@@ -100,13 +129,13 @@ mailspring-workspace {
   background-image: none !important;
   -webkit-backdrop-filter: blur(30px) saturate(150%);
   backdrop-filter: blur(30px) saturate(150%);
-  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 -1px 0 @hairline;
 }
 
 .btn-toolbar {
-  border-radius: @border-radius-small + 2;
+  border-radius: @radius-sm;
   box-shadow: none;
-  transition: background-color 120ms ease;
+  transition: background-color @dur-fast @ease-out;
   &:hover {
     background: rgba(255, 255, 255, 0.07);
   }
@@ -148,11 +177,11 @@ mailspring-workspace {
   height: 32px;
   margin: 1px 6px;
   padding: 0 10px 0 9px;
-  border-radius: 9px;
-  transition: background-color 120ms ease;
+  border-radius: @radius-md;
+  transition: background-color @dur-fast @ease-out;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.045);
+    background-color: @hover-fill;
   }
 
   .icon {
@@ -160,15 +189,101 @@ mailspring-workspace {
   }
 }
 
+.outline-view .item.selected.selected {
+  background: @accent-wash;
+  color: @accent-ink;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    width: 3px;
+    height: 16px;
+    margin-top: -8px;
+    border-radius: 2px;
+    background: @accent-primary;
+  }
+}
+
+// Sayaçlar sessiz kalsın, dolgu yalnız seçili satırda
+.outline-view .item .item-count-box {
+  margin-left: auto;
+  min-width: 0;
+  height: 15px;
+  padding: 0 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  line-height: 15px;
+  color: @text-color-very-subtle !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: @radius-md;
+  font-variant-numeric: tabular-nums;
+}
+
+.outline-view .item-count-box:empty {
+  display: none !important;
+}
+
+.outline-view .item.selected .item-count-box {
+  color: @accent-ink !important;
+  background: transparent !important;
+}
+
 // Thread rows
 .thread-list .list-item,
 .draft-list .list-item {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
-  transition: background-color 120ms ease;
+  position: relative;
+  border-bottom: 1px solid @list-border;
+  transition: background-color @dur-fast @ease-out;
+
+  &:hover {
+    background-color: @hover-fill;
+  }
+
   &.selected,
-  &.focused {
+  &.focused,
+  &.next-is-selected {
     border-bottom-color: transparent;
   }
+
+  &.selected::before,
+  &.focused::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    width: 3px;
+    height: 24px;
+    margin-top: -12px;
+    border-radius: 2px;
+    background: @accent-primary;
+  }
+}
+
+// Base koyu temalar okunmuşu soluklaştırır; triyajda okunmamış öne çıksın
+.thread-list .list-item:not(.unread) {
+  .participants,
+  .subject {
+    color: @text-color-subtle;
+  }
+}
+
+.thread-list .list-item.unread {
+  .participants,
+  .subject {
+    color: @text-color-heading;
+  }
+  .timestamp {
+    opacity: 1;
+    color: @accent-ink;
+  }
+}
+
+.thread-list .list-item .snippet {
+  color: @text-color-very-subtle;
+  opacity: 1;
 }
 
 // Konu saatiyle çakışmasın
@@ -178,21 +293,73 @@ mailspring-workspace {
 
 .thread-list .list-item .timestamp {
   opacity: 0.72;
+  font-variant-numeric: tabular-nums;
+}
+
+// PNG nokta gri kalıyor; okunmamış işareti accent'ten çizilsin
+.thread-list .list-item .thread-icon.thread-icon-unread {
+  position: relative;
+  background-image: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: @accent-primary;
+  }
 }
 
 // Etiketler koyu zeminde parlamasın, renk yazıya taşınsın
-.thread-list .list-item .mail-label {
+.thread-list .list-item .mail-label,
+.message-subject-wrap .mail-label {
   background: rgba(255, 255, 255, 0.07) !important;
   box-shadow: none !important;
+  border-radius: @radius-xs;
   filter: brightness(240%) saturate(130%);
 }
 
-// Siyah PNG ikonlar koyu zeminde kayboluyor
+// Siyah PNG ikonlar koyu zeminde kayboluyor; her satırda bağırmasın
 .thread-list .list-item .thread-icon,
 .thread-list .list-item .draft-icon,
 .thread-list .list-item .mail-important-icon {
   filter: brightness(600%) grayscale(100%);
-  opacity: 0.7;
+  opacity: 0.35;
+  transition: opacity @dur-fast @ease-out;
+}
+
+.thread-list .list-item:hover,
+.thread-list .list-item.selected,
+.thread-list .list-item.focused {
+  .thread-icon,
+  .draft-icon,
+  .mail-important-icon {
+    opacity: 0.75;
+  }
+}
+
+// Gmail çoğu maili önemli işaretliyor; işaret kalsın ama bağırmasın
+.thread-list .list-item .mail-important-icon.enabled {
+  opacity: 0.5;
+}
+
+// Pencere odakta değilken base seçimi griye çeviriyor; accent soluk kalsın
+body.is-blurred .list-container .list-item {
+  &.selected,
+  &.focused {
+    background: color-mix(in srgb, @accent-primary 9%, transparent);
+    color: @text-color;
+  }
+  &.selected::before,
+  &.focused::before {
+    opacity: 0.45;
+  }
 }
 
 // Mica zemini panellerin altında kalsın
@@ -207,19 +374,23 @@ mailspring-workspace {
 }
 
 #message-list .message-item-wrap {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 #message-list .message-item-wrap .message-item-white-wrap {
-  background: #2b2b2b;
+  background: @surface-card;
   border: none;
-  border-radius: 14px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px rgba(0, 0, 0, 0.22);
+  border-radius: @radius-lg;
+  box-shadow: @card-shadow;
   overflow: hidden;
 }
 
 #message-list .message-item-wrap.collapsed .message-item-white-wrap {
-  background: #262626;
+  background: @surface-card-muted;
+  transition: background-color @dur-fast @ease-out;
+  &:hover {
+    background: @surface-card;
+  }
 }
 
 .message-subject-wrap .message-subject.message-subject,
@@ -245,6 +416,7 @@ mailspring-workspace {
 .message-participants .participant-label,
 .message-time {
   color: @text-color-very-subtle;
+  font-variant-numeric: tabular-nums;
 }
 
 #message-list .message-body,
@@ -255,15 +427,40 @@ mailspring-workspace {
 
 .message-subject-wrap,
 .message-list-headers {
-  border-bottom-color: rgba(255, 255, 255, 0.06);
+  border-bottom-color: @hairline;
+}
+
+.message-icons-wrap .btn-icon,
+.message-subject-wrap .message-icons-wrap > div {
+  border-radius: @radius-sm;
+  transition: background-color @dur-fast @ease-out;
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+
+// Yanıt alanı son kartın altına kesik çizgiyle yapışmasın, kendi kartı olsun
+#message-list .footer-reply-area-wrap {
+  margin: 0 auto 16px;
+  border: none !important;
+  border-radius: @radius-lg;
+  background: @surface-card-muted;
+  box-shadow: @card-shadow;
+  color: @text-color-very-subtle;
+  transition: background-color @dur-fast @ease-out;
+
+  &:hover {
+    background: @surface-card;
+    color: @text-color-subtle;
+  }
 }
 
 // Çeviri şeridi: keskin mavi kutu yerine yumuşak şerit
 .translate-message-header {
   margin: 12px 0 !important;
-  border-radius: 12px;
+  border-radius: @radius-lg;
   overflow: hidden;
-  background: rgba(76, 194, 255, 0.08);
+  background: color-mix(in srgb, @accent-primary 8%, transparent);
 
   .message {
     border: none !important;
@@ -282,12 +479,12 @@ mailspring-workspace {
     min-width: 74px;
     padding: 0 10px !important;
     border: none !important;
-    border-radius: 8px;
-    background: rgba(76, 194, 255, 0.16);
+    border-radius: @radius-sm;
+    background: color-mix(in srgb, @accent-primary 16%, transparent);
     color: @text-color;
 
     &:active {
-      background: rgba(76, 194, 255, 0.26);
+      background: @accent-wash-strong;
     }
   }
 }
@@ -295,12 +492,29 @@ mailspring-workspace {
 // Sağ panel: kart canvas üstünde yüzsün
 .column-MessageListSidebar {
   background: transparent !important;
+  border-left-color: @hairline !important;
+}
+
+.sidebar-participant-picker {
+  padding: 10px 8px 12px;
+
+  select {
+    height: 30px;
+    padding: 0 8px;
+    border: 1px solid @hairline;
+    border-radius: @radius-sm;
+    background-color: @input-bg;
+    color: @text-color;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
 }
 
 .sidebar-section.visible {
-  background: rgba(255, 255, 255, 0.045) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
   border: none;
-  border-radius: 14px;
+  border-radius: @radius-lg;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .sidebar-contact-card p {
@@ -310,12 +524,13 @@ mailspring-workspace {
 }
 
 .sidebar-contact-card .btn {
-  border-radius: 999px;
+  border-radius: @radius-pill;
 }
 
 .contact-profile-photo {
-  border-radius: 14px !important;
+  border-radius: 50% !important;
   background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
 }
 
 .participant-profile .personal-info {
@@ -338,11 +553,29 @@ mailspring-workspace {
   line-height: 1.6;
 }
 
+.related-threads {
+  font-variant-numeric: tabular-nums;
+  .related-thread {
+    border-radius: @radius-sm;
+    &:hover {
+      background: @hover-fill;
+    }
+  }
+}
+
 // Controls
 .btn {
-  border-radius: @border-radius-small + 2;
+  border-radius: @radius-sm;
   box-shadow: none;
-  transition: background-color 120ms ease, color 120ms ease;
+  transition: background-color @dur-fast @ease-out, color @dur-fast @ease-out;
+}
+
+.btn.btn-emphasis {
+  background: @accent-primary;
+  color: @btn-emphasis-text-color;
+  &:hover {
+    background: @accent-primary-dark;
+  }
 }
 
 input[type='text'],
@@ -350,14 +583,30 @@ input[type='email'],
 input[type='search'],
 input[type='password'],
 textarea {
-  border-radius: @border-radius-small + 2;
+  border-radius: @radius-sm;
+  transition: border-color @dur-fast @ease-out, box-shadow @dur-fast @ease-out;
+
+  &:focus {
+    border-color: @accent-primary;
+    box-shadow: 0 0 0 2px @accent-wash-strong;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid @accent-primary;
+  outline-offset: 1px;
 }
 
 // Composer
 .composer-inner-wrap .RichEditor-root {
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: @border-radius-large;
+  border-radius: @radius-lg;
+  transition: border-color @dur-fast @ease-out;
+
+  &:focus-within {
+    border-color: color-mix(in srgb, @accent-primary 45%, transparent);
+  }
 }
 
 .composer-action-bar-wrap {
@@ -368,51 +617,16 @@ textarea {
 .menu,
 .dropdown-menu,
 .fixed-popover {
-  border-radius: @border-radius-large;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  background-color: @surface-raised;
+  border-radius: @radius-lg;
+  border: none;
+  box-shadow: @popover-shadow;
 }
 
-.outline-view .item.selected.selected {
-  background: linear-gradient(180deg, rgba(76, 194, 255, 0.2), rgba(76, 194, 255, 0.11));
-  color: #eaf6ff;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 3px;
-    top: 50%;
-    width: 3px;
-    height: 16px;
-    margin-top: -8px;
-    border-radius: 2px;
-    background: @accent-primary;
-  }
-}
-
-// Sayaçlar sessiz kalsın, dolgu yalnız seçili satırda
-.outline-view .item .item-count-box {
-  margin-left: auto;
-  min-width: 0;
-  height: 15px;
-  padding: 0 4px;
-  font-size: 11.5px;
-  font-weight: 500;
-  line-height: 15px;
-  color: #9a9a9a !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  border-radius: 8px;
-  font-variant-numeric: tabular-nums;
-}
-
-.outline-view .item-count-box:empty {
-  display: none !important;
-}
-
-.outline-view .item.selected .item-count-box {
-  color: #d6ecff !important;
-  background: transparent !important;
+.menu .item.selected,
+.menu .content-container .item.selected {
+  background: @accent-wash-strong;
+  color: @text-color-heading;
 }
 
 // Mailspring draws its own overlay scrollbar as a light pill
@@ -428,7 +642,7 @@ textarea {
 
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.18);
-  border-radius: 5px;
+  border-radius: @radius-xs;
 }
 
 ::-webkit-scrollbar-track {
@@ -436,5 +650,11 @@ textarea {
 }
 
 ::selection {
-  background: rgba(76, 194, 255, 0.35);
+  background: color-mix(in srgb, @accent-primary 35%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
 }

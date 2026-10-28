@@ -9,8 +9,15 @@
 
   html,
   body,
-  #inbox-html-wrapper,
-  #inbox-html-wrapper.has-background {
+  #inbox-html-wrapper {
     background: transparent !important;
+  }
+
+  // Kendi zemini olan HTML mail beyaz için tasarlanmış; kâğıdı koru, yoksa metin koyu kartta kaybolur
+  #inbox-html-wrapper.has-background {
+    background: #ffffff !important;
+    color: #1b1b1b;
+    border-radius: @radius-md;
+    overflow: hidden;
   }
 }

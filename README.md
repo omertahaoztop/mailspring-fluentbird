@@ -11,26 +11,37 @@ itself.
 
 ## What it changes
 
-- **Layered dark surfaces** in Fluent tones: chrome `#1d2123`, navigation `#252525`, list `#1b1b1b`,
-  message cards `#2b2b2b`.
-- **Mica canvas** — two soft accent blooms behind the workspace, visible through the translucent
-  navigation pane and the reading pane instead of a flat grey block.
-- **Messages as cards** — 14 px radius, no borders, two-layer shadow; collapsed messages sit one
-  step lower (`#262626`).
-- **Reading pane typography** — 19 px bold subject, 600-weight sender, muted timestamps,
-  14.5 px / 1.62 body. The translation banner becomes a soft accent strip with capsule buttons
-  instead of a hard blue box.
-- **Fluent nav rows** — 32 px rows on a 9 px radius, soft hover fill, muted uppercase section
+- **One accent source** — every wash, bar, dot, focus ring and selection is mixed from
+  `--system-accent` (fallback Fluent blue `#4cc2ff`), so a different system accent recolors the
+  whole theme instead of half of it.
+- **Layered dark surfaces** on one scale: canvas `#1c1c1c`, pane `#202020`, card `#2b2b2b`,
+  collapsed card `#262626`, menus and popovers `#2f2f2f`. Radii follow one scale too:
+  4 / 6 / 8 / 12 px.
+- **Mica canvas** — a single soft accent bloom behind the workspace, visible through the
+  translucent navigation pane and the reading pane instead of a flat grey block.
+- **Triage-first thread list** — selected and focused rows carry the same accent bar and wash as
+  the nav pane (dimmed, not grey, when the window loses focus); unread rows get an accent dot,
+  full-white sender and subject and an accent timestamp, read rows step down to secondary text.
+  Mail-state icons stay quiet until hover or selection.
+- **Messages as cards** — 12 px radius, hairline plus two-layer shadow; collapsed messages sit one
+  step lower and lift on hover. The reply box is its own card instead of a dashed strip under the
+  last message.
+- **Reading pane typography** — 19 px bold subject, 600-weight sender, muted tabular timestamps,
+  14.5 px / 1.62 body. The translation banner becomes a soft accent strip with soft buttons.
+- **Fluent nav rows** — 32 px rows on an 8 px radius, soft hover fill, muted uppercase section
   headings, and a selected row carried by an accent bar plus a light accent wash.
 - **Quiet counters** — sidebar counts are plain secondary text (tabular figures), pushed to the
   right edge instead of trailing the label.
-- **Muted mail labels** — programmatic label colors move from the chip fill to the label text, so
-  they stop glowing on a dark background.
-- **Visible icons** — the black PNG mail-state icons (attachment, star, important) are inverted;
-  window buttons are no longer washed out.
+- **Muted mail labels** — programmatic label colors move from the chip fill to the label text, in
+  the thread list and in the message header, so they stop glowing on a dark background.
+- **Contact sidebar** — the participant picker is a themed field instead of a native select, the
+  avatar is round, related threads use tabular times.
+- **Controls** — inputs and the composer get an accent focus ring, menus share the popover
+  elevation, transitions use one 120 ms ease-out and switch off under reduced motion.
 - **Email frame safe** — `styles/email-frame.less` is injected into every message iframe: it aligns
   `color-scheme` and clears the frame background, which prevents the black block Chromium paints
-  behind text when the email declares a dark scheme.
+  behind text when the email declares a dark scheme. HTML mail that brings its own background keeps
+  a white sheet with rounded corners, so text designed for white never lands on the dark card.
 
 ## Install
 
@@ -61,6 +72,9 @@ Two quirks are worth knowing before editing:
   `@import 'ui-variables'`). Where the base theme sets a property with the same specificity, the base
   wins — either raise specificity (`.item.selected.selected`) or use `!important`. Both are marked
   in the file.
+- Base stylesheets run LESS color functions (`darken()`, `fade()`) on some variables, for example
+  `@btn-emphasis-bg-color`. Those must stay literal colors; a `var()` or `color-mix()` there breaks
+  compilation and Mailspring falls back to its bundled theme.
 - Do not add `styles/index.less`. Mailspring would then load only that file and ignore
   `styles/email-frame.less`.
 
