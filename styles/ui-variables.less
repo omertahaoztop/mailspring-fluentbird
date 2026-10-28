@@ -123,12 +123,41 @@ mailspring-workspace {
   border-right: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.outline-view .heading {
+  margin-top: 12px;
+  padding: 4px 14px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+// İlk başlık hesap adresi; etiket başlığı gibi büyük harfe çevrilmesin
+.account-sidebar .outline-view:first-child .heading {
+  margin-top: 0;
+  padding: 12px 14px 8px;
+  font-size: 12.5px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: @text-color-subtle;
+}
+
 .outline-view .item {
-  height: 30px;
+  position: relative;
+  height: 32px;
   margin: 1px 6px;
-  padding-right: 8px;
-  border-radius: @border-radius-small + 2;
+  padding: 0 10px 0 9px;
+  border-radius: 9px;
   transition: background-color 120ms ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.045);
+  }
+
+  .icon {
+    padding-right: 10px;
+  }
 }
 
 // Thread rows
@@ -345,12 +374,25 @@ textarea {
 }
 
 .outline-view .item.selected.selected {
-  background: rgba(76, 194, 255, 0.14);
+  background: linear-gradient(180deg, rgba(76, 194, 255, 0.2), rgba(76, 194, 255, 0.11));
   color: #eaf6ff;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    width: 3px;
+    height: 16px;
+    margin-top: -8px;
+    border-radius: 2px;
+    background: @accent-primary;
+  }
 }
 
 // Sayaçlar sessiz kalsın, dolgu yalnız seçili satırda
-.outline-view .item-count-box {
+.outline-view .item .item-count-box {
+  margin-left: auto;
   min-width: 0;
   height: 15px;
   padding: 0 4px;

@@ -20,8 +20,10 @@ itself.
 - **Reading pane typography** — 19 px bold subject, 600-weight sender, muted timestamps,
   14.5 px / 1.62 body. The translation banner becomes a soft accent strip with capsule buttons
   instead of a hard blue box.
-- **Quiet counters** — sidebar counts are plain secondary text (tabular figures), the selected row
-  no longer paints a bright accent pill.
+- **Fluent nav rows** — 32 px rows on a 9 px radius, soft hover fill, muted uppercase section
+  headings, and a selected row carried by an accent bar plus a light accent wash.
+- **Quiet counters** — sidebar counts are plain secondary text (tabular figures), pushed to the
+  right edge instead of trailing the label.
 - **Muted mail labels** — programmatic label colors move from the chip fill to the label text, so
   they stop glowing on a dark background.
 - **Visible icons** — the black PNG mail-state icons (attachment, star, important) are inverted;
