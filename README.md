@@ -38,6 +38,13 @@ itself.
   avatar is round, related threads use tabular times.
 - **Controls** — inputs and the composer get an accent focus ring, menus share the popover
   elevation, transitions use one 120 ms ease-out and switch off under reduced motion.
+- **Settings that match** — the account, signature and mail-rule panes keep the dark cards and
+  hairline borders: the base theme's light `@gray-*` ramp is remapped (it painted the account
+  panel white) and its "ink on accent" token is dark, so selected editable-list rows stay
+  readable instead of white-on-white.
+- **Native controls agree** — `color-scheme: dark` on the root turns sliders, scrollbars and
+  pickers dark, placeholders get the secondary text colour, and the signature template picker
+  wraps instead of clipping its last option.
 - **Email frame safe** — `styles/email-frame.less` is injected into every message iframe: it aligns
   `color-scheme` and clears the frame background, which prevents the black block Chromium paints
   behind text when the email declares a dark scheme. HTML mail that brings its own background keeps

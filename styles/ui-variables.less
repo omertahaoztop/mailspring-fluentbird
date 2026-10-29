@@ -15,6 +15,13 @@
 @hairline: rgba(255, 255, 255, 0.06);
 @hover-fill: rgba(255, 255, 255, 0.045);
 
+// Base tema @gray-* terimlerini açık yüzey varsayarak formüllüyor
+@gray-darker: #151515;
+@gray-dark: #1d1d1d;
+@gray: #4a4a4a;
+@gray-light: #5a5a5a;
+@gray-lighter: @surface-raised;
+
 @radius-xs: 4px;
 @radius-sm: 6px;
 @radius-md: 8px;
@@ -48,7 +55,8 @@
 @text-color-link-active: @accent-ink;
 
 @component-active-color: @accent-primary;
-@component-active-bg: rgba(255, 255, 255, 0.05);
+// Base bu değişkeni accent zemine binen yazı/ikon rengi olarak kullanıyor
+@component-active-bg: #0b1014;
 
 @panel-background-color: rgba(255, 255, 255, 0.025);
 @source-list-bg: @panel-background-color;
@@ -105,6 +113,7 @@
 // Mica: one soft accent bloom under the translucent surfaces
 html,
 body {
+  color-scheme: dark;
   color: @text-color;
   background-color: @surface-canvas;
 }
@@ -563,6 +572,60 @@ body.is-blurred .list-container .list-item {
   }
 }
 
+// Tercihler
+.preferences-wrap {
+  .account-details {
+    border-radius: @radius-lg;
+    border: 1px solid @hairline;
+  }
+
+  .platform-note {
+    background: @accent-wash;
+    border-left-color: @accent-primary;
+    border-radius: @radius-sm;
+  }
+}
+
+// Base seçili satırı hsl(... 70%) açık griye boyuyor, yazıyı da zemine çeviriyor
+.nylas-editable-list {
+  .items-wrapper .selected,
+  .items-wrapper .selected.editing,
+  &:focus .items-wrapper .selected {
+    background-color: @accent-wash-strong;
+    color: @text-color;
+  }
+
+  .items-wrapper .editable-item > input {
+    color: @text-color;
+  }
+
+  .items-wrapper .editable-item img.edit-icon {
+    background-color: @text-color-subtle;
+  }
+}
+
+// Seçili satırda base bu yazıyı @component-active-bg (accent altı mürekkep) yapıyor
+.preferences-signatures-container .selected .item-rule-disabled,
+.container-mail-rules .selected .item-rule-disabled {
+  color: @text-color-very-subtle;
+}
+
+// 6 şablon 100px kartlarla sığmıyor, base yatay kaydırınca son kart kesiliyor
+.preferences-signatures-container .signature-wrap .signature-template-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  height: auto;
+  overflow: visible;
+  padding: 6px 0 0;
+
+  .option {
+    margin: 0;
+    background: @surface-card;
+    border-color: @hairline;
+  }
+}
+
 // Controls
 .btn {
   border-radius: @radius-sm;
@@ -590,6 +653,12 @@ textarea {
     border-color: @accent-primary;
     box-shadow: 0 0 0 2px @accent-wash-strong;
   }
+}
+
+// Chromium varsayılanı koyu zeminde okunmuyor
+input::placeholder,
+textarea::placeholder {
+  color: @text-color-very-subtle;
 }
 
 :focus-visible {
